@@ -35,17 +35,14 @@ public class CryptoModule {
         try(BufferedWriter output = Files.newBufferedWriter(Paths.get(filePath))) {
             Scanner scanner = new Scanner(System.in);
             CryptoDataset cryptoDataset = new CryptoDataset();
-
-            while (scanner.hasNext()) {
-                try {
-                    String inputString = scanner.nextLine();
-                    String encryptedString = encrypt(inputString);
-                    CryptoData cryptoData = new CryptoData(true, encryptedString);
-                    cryptoDataset.getCryptoDatas().add(cryptoData);
-                } catch (NoSuchElementException elementException) {
-                    System.out.println("Invalid input. Please try again.");
-                    break;
-                }
+            try {
+                String inputString = scanner.nextLine();
+                String encryptedString = encrypt(inputString);
+                CryptoData cryptoData = new CryptoData(true, encryptedString);
+                cryptoDataset.getCryptoDatas().add(cryptoData);
+            } catch (NoSuchElementException elementException) {
+                System.out.println("Invalid input. Please try again.");
+                return;
             }
             JAXB.marshal(cryptoDataset, output);
             System.out.println("Successfully wrote encrypted string to file.\n");

@@ -1,10 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "cryptoData")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CryptoData {
-    public  boolean encrypted;
-    public  String text;
+
+    private boolean encrypted;
+    private String text;
 
     public CryptoData() {}
 
@@ -13,21 +16,11 @@ public class CryptoData {
         this.text = text;
     }
 
-    @XmlElement(name = "encrypted")
-    public boolean isEncrypted() {
-        return encrypted;
-    }
+    public boolean isEncrypted() { return encrypted;}
 
-    public void setEncrypted(boolean encrypted) {
-        this.encrypted = encrypted;
-    }
+    public void setEncrypted(boolean encrypted) { this.encrypted = encrypted;}
 
-    @XmlElement(name = "text")
-    public String getText() {
-        return text;
-    }
+    public String getText() { return text; }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    public void setText(String text) { this.text = text; }
 }
